@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meme Coin Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Meme Coin Generator 🔥</h1>
+    <input id="promptInput" placeholder="Enter a meme idea (e.g. cats taking over the world)" />
+    <br>
+    <button onclick="generateCoin()">Generate Meme Coin</button>
+
+    <div id="result" class="result" style="display:none;">
+      <div class="field"><span class="label">🪙 Coin Name:</span> <span id="coinName"></span></div>
+      <div class="field"><span class="label">💲 Ticker:</span> <span id="ticker"></span></div>
+      <div class="field"><span class="label">📖 Description:</span> <span id="description"></span></div>
+      <div class="field"><span class="label">🌐 Website:</span> <span id="website"></span></div>
+      <div class="field"><span class="label">🐦 Twitter:</span> <span id="twitter"></span></div>
+      <div class="field"><span class="label">📢 Telegram:</span> <span id="telegram"></span></div>
+      <img id="logo" src="" alt="Generated Logo"/>
+      <br>
+      <button onclick="tweet()">Share on X</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
