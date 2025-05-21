@@ -1,32 +1,31 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { Configuration, OpenAIApi } = require('openai');
-require('dotenv').config();
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import "dotenv/config.js";
+import OpenAI from "openai";
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
-app.post('/generate-logo', async (req, res) => {
+app.post("/generate-logo", async (req, res) => {
   const { prompt } = req.body;
 
   try {
-    const response = await openai.createImage({
+    const response = await openai.images.generate({
       prompt,
       n: 1,
-      size: "256x256"
+      size: "256x256",
     });
-    const imageUrl = response.data.data[0].url;
+    const imageUrl = response.data[0].url;
     res.json({ url: imageUrl });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to generate image' });
+    console.error("Error generating image:", err);
+    res.status(500).json({ error: "Failed to generate image" });
   }
 });
 
